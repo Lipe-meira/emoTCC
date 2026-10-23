@@ -1,0 +1,31 @@
+{
+  "inputs": [
+    {"path": "../dataset/BenignTraffic.pcap.csv", "label": "BENIGN"},
+    {"path": "../dataset/BenignTraffic1.pcap.csv", "label": "BENIGN"},
+    {"path": "../dataset/BenignTraffic2.pcap.csv", "label": "BENIGN"},
+    {"path": "../dataset/BenignTraffic3.pcap.csv", "label": "BENIGN"},
+    {"path": "../dataset/Merged01.csv"},
+    {"path": "../dataset/Merged02.csv"},
+    {"path": "../dataset/Merged03.csv"}
+  ],
+  "output_dir": "../outputs/experiment",
+  "train_fraction": 0.7,
+  "seed": 42,
+  "quantile": 0.99,
+  "min_profile_samples": 100,
+  "chunk_size": 50000,
+  "max_rows_per_file": null,
+  "timestamp_format": null,
+  "export_events": true,
+  "expected_attack_labels": [
+    "DDOS-ICMP_FLOOD", "DDOS-UDP_FLOOD", "DDOS-TCP_FLOOD", "DDOS-SYN_FLOOD",
+    "DDOS-RSTFINFLOOD", "DDOS-PSHACK_FLOOD", "DDOS-SYNONYMOUSIP_FLOOD",
+    "DOS-UDP_FLOOD", "DOS-TCP_FLOOD", "DOS-SYN_FLOOD", "MIRAI-GREETH_FLOOD",
+    "MIRAI-UDPPLAIN", "MIRAI-GREIP_FLOOD", "DDOS-ICMP_FRAGMENTATION",
+    "VULNERABILITYSCAN", "MITM-ARPSPOOFING", "DDOS-ACK_FRAGMENTATION",
+    "DDOS-UDP_FRAGMENTATION", "DNS_SPOOFING", "RECON-HOSTDISCOVERY",
+    "RECON-OSSCAN", "RECON-PORTSCAN", "DOS-HTTP_FLOOD", "DDOS-SLOWLORIS",
+    "DDOS-HTTP_FLOOD", "DICTIONARYBRUTEFORCE", "COMMANDINJECTION", "RECON-PINGSWEEP",
+    "XSS", "BROWSERHIJACKING", "BACKDOOR_MALWARE", "SQLINJECTION", "UPLOADING_ATTACK"
+  ]
+}

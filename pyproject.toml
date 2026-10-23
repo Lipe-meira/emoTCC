@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emotcc"
+version = "1.0.0"
+description = "Digital Twin simplificado para avaliação offline do CICIoT2023"
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.2,<4", "numpy>=2,<3"]
+
+[project.scripts]
+emotcc = "emotcc.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["emotcc*"]

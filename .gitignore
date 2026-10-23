@@ -14,3 +14,5 @@ outputs/*
 *.sqlite-*
 config/local*.json
 .ipynb_checkpoints/
+.test_tmp/
+/docs/results/
