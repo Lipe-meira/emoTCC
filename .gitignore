@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+dataset/*
+!dataset/.gitkeep
+outputs/*
+!outputs/.gitkeep
+*.sqlite
+*.sqlite-*
+config/local*.json
+.ipynb_checkpoints/
