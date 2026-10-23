@@ -6,7 +6,7 @@ Comando, na raiz do repositório:
 python -m unittest discover -s tests -v
 ```
 
-A suíte possui **20 testes**, executados com sucesso antes da publicação. Todas as suas fixtures são sintéticas e criadas em diretórios temporários, sem uso dos arquivos reais de entrada.
+A suíte possui **22 testes**, executados com sucesso antes da publicação. Todas as suas fixtures são sintéticas e criadas em diretórios temporários, sem uso dos arquivos reais de entrada.
 
 A cobertura inclui:
 
@@ -18,6 +18,7 @@ A cobertura inclui:
 * Motor compartilhado com parâmetros globais/contextuais e ausência de influência do rótulo nas regras.
 * Métricas com resultados conhecidos e denominadores indefinidos.
 * Reprodução temporal configurada, vários lotes e igualdade de decisões entre etapas e execução única.
+* Precisão temporal consistente entre blocos de CSV e exclusão de datas fora do intervalo representável em nanosegundos.
 * Proteção contra sobrescrita e reprodutibilidade com diferentes tamanhos de bloco.
 
 A análise sintática dos módulos e `git diff --cached --check` também foram executados. O workflow `.github/workflows/tests.yml` configura a suíte para Python 3.10 e 3.13 em GitHub Actions.

@@ -94,6 +94,8 @@ Colunas necessárias são `protocol_type` e as de `rule_features`. Colunas opcio
 
 Os nomes canônicos são `protocol_type`, `tcp`, `udp`, `http`, `https`, `dns`, `arp`, `icmp`, `rate`, `number`, `tot_size`, `tot_sum`, `min`, `max`, `avg`, `std`, `iat`. O mapeamento dos cabeçalhos originais está em `FIELD_MAP`.
 
+Quando ativados, timestamps são convertidos para UTC e uma unidade única de nanosegundos, inclusive quando diferentes blocos contêm precisões diferentes. Datas fora do intervalo representável em nanosegundos pelo pandas são excluídas e auditadas como timestamps inválidos.
+
 ## Método experimental
 
 1. Converte os atributos selecionados para números, conserva indicadores fracionários entre 0 e 1 e padroniza os rótulos com espaços removidos e letras maiúsculas. Não padroniza a escala nem imputa valores.

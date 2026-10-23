@@ -262,6 +262,24 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(db.execute('SELECT count(*) FROM decisions').fetchone()[0], 46)
         self.assertEqual(db.execute('SELECT sum(processed_events) FROM operational_state').fetchone()[0], 23)
 
+    def test_timestamp_precision_is_consistent_across_csv_chunks(self):
+        from emotcc.preprocessing import normalize
+        orders = []
+        for timestamp in ['2025-01-01T00:00:00.000000001Z', '2025-01-02T00:00:00Z']:
+            data, _ = normalize(pd.DataFrame({'Protocol Type': [6], 'Rate': [1],
+                                               'Label': ['BENIGN'], 'ts': [timestamp]}),
+                                ['protocol_type', 'rate'], timestamp_format='iso8601')
+            orders.append(int(data.iloc[0]['time_order']))
+        self.assertEqual(orders[1]-orders[0], 86399999999999)
+
+    def test_timestamp_outside_nanosecond_range_is_quarantined(self):
+        from emotcc.preprocessing import normalize
+        data, q = normalize(pd.DataFrame({'Protocol Type': [6], 'Rate': [1],
+                                          'Label': ['BENIGN'], 'ts': ['2500-01-01T00:00:00Z']}),
+                            ['protocol_type', 'rate'], timestamp_format='iso8601')
+        self.assertEqual(len(data), 0)
+        self.assertEqual(q['invalid_by_field']['timestamp'], 1)
+
 
 if __name__ == '__main__':
     unittest.main()

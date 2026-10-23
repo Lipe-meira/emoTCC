@@ -49,6 +49,10 @@ def normalize(frame, features, assigned_label=None, timestamp_format=None):
         else:
             timestamps = pd.to_datetime(pd.to_numeric(data['ts'], errors='coerce'),
                                         unit=timestamp_format[5:], utc=True, errors='coerce')
+        # pandas can infer us in one block and ns in another. Persist a single unit.
+        in_range = ((timestamps >= pd.Timestamp.min.tz_localize('UTC'))
+                    & (timestamps <= pd.Timestamp.max.tz_localize('UTC')))
+        timestamps = timestamps.where(in_range).dt.as_unit('ns')
         problems['timestamp'] = int(timestamps.isna().sum())
         bad |= timestamps.isna().to_numpy()
         data['time_order'] = timestamps.astype('int64')
